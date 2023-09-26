@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react'
 import Card from '../components/Card';
-import { CurrencyModel } from '../models/currency-backend.model';
 import { CardSkeleton } from '../components/CardSkeleton';
 import useEuro from '../hooks/useEuro';
 

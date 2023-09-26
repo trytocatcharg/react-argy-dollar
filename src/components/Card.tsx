@@ -1,7 +1,7 @@
 import './Card.css';
 import { Variation } from './Variation';
 import { TimeAgo } from './TimeAgo';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { currencyDescription } from '../data/currency-description';
 
 type Dollar = {

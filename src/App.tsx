@@ -4,7 +4,6 @@ import Main from './pages/Main';
 import Footer from './components/Footer';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Euros from './pages/Euros';
-import { MarqueeMarkets } from './components/MarqueeMarkets';
 
 function App() {
 

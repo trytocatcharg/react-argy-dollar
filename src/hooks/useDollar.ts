@@ -10,6 +10,7 @@ export default function useDollar() {
         fetch(url)
           .then( e => e.json())
           .then(e => {
+
             const value = e.data.panel.map(element => {
               let fecha: Date = element.lastUpdate;
               if (element.fecha) {

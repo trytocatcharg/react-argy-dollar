@@ -1,18 +1,11 @@
-import { useEffect, useRef, useState } from "react";
 import SwiperCore from "swiper";
 import { Swiper, SwiperProps, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import "./MarqueeMarkets.css";
-import { register } from 'swiper/element/bundle';
 import { Autoplay, Parallax } from "swiper/modules";
 
 export const MarqueeMarkets = () => {
-  const swiperRef = useRef<SwiperCore>();
-  const [hover, onHover] = useState<boolean>(false);
 
-  const onInit = (Swiper: SwiperCore): void => {
-    swiperRef.current = Swiper;
-  };
 
   const SwiperConfig: SwiperProps = {
     speed: 9000,
