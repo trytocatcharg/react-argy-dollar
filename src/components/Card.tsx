@@ -1,4 +1,3 @@
-import './Card.css';
 import { Variation } from './Variation';
 import { TimeAgo } from './TimeAgo';
 import { useState } from 'react';
@@ -38,19 +37,18 @@ function Card({name, compra, venta,cierre, updatedAt, children}: Dollar) {
 
   setTimeout(() => {
     setAnimation(false);  
-  }, 2000);
+  }, 3000);
   
   
   function handleClick(): void {
-    setAnimation(true);
-    setCardSide((prev) => {
-      return prev === cardSideEnum.FRONT ? cardSideEnum.BACK : cardSideEnum.FRONT;
-    });
-    
+      setAnimation(true);
+      setCardSide((prev) => {
+        return prev === cardSideEnum.FRONT ? cardSideEnum.BACK : cardSideEnum.FRONT;
+      });
   }
 
   const handleBackClick = () => {
-    handleClick();
+      handleClick();
   } 
 
 
@@ -59,7 +57,7 @@ function Card({name, compra, venta,cierre, updatedAt, children}: Dollar) {
           {
             cardSide === cardSideEnum.FRONT &&
               <div 
-              className={`bg-gray-50 flex justify-center items-center animate-duration-[2000ms] ${animation ? 'animate-rotate-y': ''}`}>
+              className={`bg-gray-50 flex justify-center items-center ${animation ? 'animate-rotate-y animate-duration-[2500ms]': ''}`}>
             <div className="h-56 w-72 absolute flex justify-center items-center">
               {children}
           </div>
@@ -76,11 +74,15 @@ function Card({name, compra, venta,cierre, updatedAt, children}: Dollar) {
             >
               <div className="h-1/2 w-full flex justify-between items-baseline px-3 py-5">
                 <h2 className="text-white text-2xl">{name}</h2>
-                <div onClick={() => handleClick()} className='hover:cursor-pointer z-50'>
-                  <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="white" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
-                  </svg>
-                </div>
+                {
+                  !animation  &&
+                    <div onClick={() => handleClick()} className='hover:cursor-pointer z-50'>
+                      <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="white" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                      </svg>
+                    </div>
+                }
+                
               </div>
 
               <div
@@ -117,7 +119,7 @@ function Card({name, compra, venta,cierre, updatedAt, children}: Dollar) {
               cardSide === cardSideEnum.BACK &&
 
               <div 
-              className={`bg-gray-50 flex justify-center items-center animate-duration-[2000ms] ${animation ? 'animate-rotate-y': ''}`}>
+              className={`bg-gray-50 flex justify-center items-center ${animation ? 'animate-rotate-y animate-duration-[2500ms]': ''}`}>
             <div className="h-56 w-72 absolute flex justify-center items-center">
               
           </div>
@@ -134,11 +136,14 @@ function Card({name, compra, venta,cierre, updatedAt, children}: Dollar) {
             >
               <div className="h-1/2 w-full flex justify-between items-baseline px-3 py-5">
               <h2 className="text-white text-2xl">Description</h2>
-                <div onClick={() => handleBackClick()} className='hover:cursor-pointer z-50'>
-                  <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="white" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
-                  </svg>
-                </div>
+              {
+                  !animation  &&
+                    <div onClick={() => handleBackClick()} className='hover:cursor-pointer z-50'>
+                      <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="white" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                      </svg>
+                    </div>
+              }
               </div>
 
               <div
