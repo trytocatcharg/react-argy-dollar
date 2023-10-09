@@ -2,6 +2,8 @@ import { Variation } from './Variation';
 import { TimeAgo } from './TimeAgo';
 import { useState } from 'react';
 import { currencyDescription } from '../data/currency-description';
+import Modal from 'react-modal';
+import Chart from './Chart';
 
 type Dollar = {
     name: string,
@@ -9,6 +11,7 @@ type Dollar = {
     venta: number;
     cierre: number;
     updatedAt: Date;
+    showChart: boolean;
     children: string | JSX.Element
 }
 
@@ -28,12 +31,18 @@ const format = (value: number) => {
     .trim();
 }
 
-function Card({name, compra, venta,cierre, updatedAt, children}: Dollar) {
+function Card({name, compra, venta,cierre, updatedAt, children, showChart}: Dollar) {
   const [cardSide, setCardSide] = useState(cardSideEnum.FRONT);
   const [animation, setAnimation] = useState(true);
   const buyFormatted = format(compra);
   const sellFormatted = format(compra);
 
+  const [modalIsOpen,setModalIsOpen] = useState(false);
+
+  const handleSetModalIsOpen =(open: boolean)=>{
+
+    setModalIsOpen(open);
+  }
 
   setTimeout(() => {
     setAnimation(false);  
@@ -72,8 +81,17 @@ function Card({name, compra, venta,cierre, updatedAt, children}: Dollar) {
                 sm:w-80 sm:mx-0
               "
             >
-              <div className="h-1/2 w-full flex justify-between items-baseline px-3 py-5">
-                <h2 className="text-white text-2xl">{name}</h2>
+              <div className="h-1/2 w-full flex justify-between items-baseline px-3 py-5 gap-2 content-center">
+                {
+                 (!animation && showChart) && 
+                 <div onClick={() => handleSetModalIsOpen(true)} className='hover:cursor-pointer z-50'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+                    </svg>
+                 </div>
+                }
+              
+                <h2 className="text-white text-2xl mr-auto">{name}</h2>
                 {
                   !animation  &&
                     <div onClick={() => handleClick()} className='hover:cursor-pointer z-50'>
@@ -168,6 +186,23 @@ function Card({name, compra, venta,cierre, updatedAt, children}: Dollar) {
               </div>
 
           }
+
+            <Modal 
+              isOpen={modalIsOpen} 
+              appElement={document.getElementById("root")}
+              style={{
+                zIndex:1000
+              }}>
+                <button 
+                className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-800"
+                onClick={() => handleSetModalIsOpen(false)}>
+                  <span className="sr-only">Close menu</span>
+                  <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+                <Chart></Chart>
+            </Modal>
         </>      
       )
 }

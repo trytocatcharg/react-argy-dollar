@@ -4,7 +4,7 @@ import { CommoditiesModel } from "../models/commodities-backend.model";
 export const useCommodities = () => {
     const url = 'https://dolar-api-three.vercel.app/commodities';
 
-    const fetCommodities = async () => {
+    const fetchCommodities = async () => {
         const e = await fetch(url);
           const e_1 = await e.json();
           const output = e_1.data.map(element => {
@@ -19,6 +19,6 @@ export const useCommodities = () => {
           return output as CommoditiesModel[]
         }
     
-    const {data, error, status, } = useQuery(['commodities'], fetCommodities, {staleTime: 3000});
+    const {data, error, status, } = useQuery(['commodities'], fetchCommodities, {staleTime: 3000});
     return { data, error, status };
 }

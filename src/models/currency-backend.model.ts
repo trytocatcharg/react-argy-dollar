@@ -4,4 +4,5 @@ export interface CurrencyModel {
     venta: number,
     cierre: number,
     updatedAt: Date;
+    showChart: boolean
 }

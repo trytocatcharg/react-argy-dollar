@@ -2,10 +2,11 @@ import Card from "../components/Card";
 import { CardSkeleton } from "../components/CardSkeleton";
 import useDollar from "../hooks/useDollar";
 
+
   function Main() {
     const {data, error, status} = useDollar();
-    
-    console.log(status);
+
+
     return (
       <main className="flex-grow p-4 bg-gray-50">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
@@ -34,6 +35,7 @@ import useDollar from "../hooks/useDollar";
                   compra={e.compra}
                   cierre={e.cierre}
                   updatedAt={e.updatedAt}
+                  showChart= {e.showChart}
                   >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" 
                 className="h-14 z-10 bg-slate-50 rounded-xl border-solid border-2 border-gray-800">

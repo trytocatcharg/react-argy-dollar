@@ -28,7 +28,8 @@ export default function useDollar() {
             compra: element.compra.replace(',', '.') as number,
             venta: element.venta.replace(',', '.') as number,
             cierre: element.cierre.replace(',', '.') as number,
-            updatedAt: fecha
+            updatedAt: fecha,
+            showChart: (element.titulo === 'Dólar Blue')
           } as CurrencyModel;
         });
         await new Promise((resolve) => { setTimeout(resolve, 3000);})
