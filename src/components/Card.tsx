@@ -11,7 +11,7 @@ type Dollar = {
     venta: number;
     cierre: number;
     updatedAt: Date;
-    showChart: boolean;
+    showChart?: boolean;
     children: string | JSX.Element
 }
 
@@ -31,7 +31,7 @@ const format = (value: number) => {
     .trim();
 }
 
-function Card({name, compra, venta,cierre, updatedAt, children, showChart}: Dollar) {
+function Card({name, compra, venta,cierre, updatedAt, children, showChart = false}: Dollar) {
   const [cardSide, setCardSide] = useState(cardSideEnum.FRONT);
   const [animation, setAnimation] = useState(true);
   const buyFormatted = format(compra);
