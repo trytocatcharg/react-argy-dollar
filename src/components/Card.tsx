@@ -35,7 +35,7 @@ function Card({name, compra, venta,cierre, updatedAt, children, showChart = fals
   const [cardSide, setCardSide] = useState(cardSideEnum.FRONT);
   const [animation, setAnimation] = useState(true);
   const buyFormatted = format(compra);
-  const sellFormatted = format(compra);
+  const sellFormatted = format(venta);
 
   const [modalIsOpen,setModalIsOpen] = useState(false);
 
