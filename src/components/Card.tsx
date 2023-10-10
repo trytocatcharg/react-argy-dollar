@@ -125,7 +125,7 @@ function Card({name, compra, venta,cierre, updatedAt, children, showChart = fals
                   </div>
                 </div>
                 <div className="w-full h-1/2 flex flex-col justify-center items-center">
-                  <Variation initPrice={cierre} endPrice={venta}></Variation>
+                  <Variation initPrice={Number(cierre)} endPrice={Number(venta)}></Variation>
                   <TimeAgo date={updatedAt} />
                 </div>
               </div>

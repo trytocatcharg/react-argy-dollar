@@ -4,7 +4,6 @@ type VariationProps = {
 }
 
 export const Variation = ({initPrice, endPrice}: VariationProps) => {
-
     let isEqual = endPrice === initPrice;
     const isPositive = (endPrice > initPrice);
     const diff =  Math.abs(endPrice - initPrice);
