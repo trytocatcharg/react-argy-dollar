@@ -1,0 +1,32 @@
+{
+    "data": [
+        {
+            "titulo": "Euro Oficial",
+            "compra": "365.73",
+            "venta": "385.42",
+            "cierre": "385.42",
+            "updatedAt": "2023-10-11T12:54:44.498Z"
+        },
+        {
+            "titulo": "Euro Blue",
+            "compra": "1096",
+            "venta": "1112",
+            "cierre": "1112",
+            "updatedAt": "2023-10-11T12:00:00.000Z"
+        },
+        {
+            "titulo": "Euro Tarjeta",
+            "compra": "365.73",
+            "venta": "674.49",
+            "cierre": "674.49",
+            "updatedAt": "2023-10-11T12:54:44.894Z"
+        },
+        {
+            "titulo": "Euro Qatar",
+            "compra": "365.73",
+            "venta": "693.76",
+            "cierre": "693.76",
+            "updatedAt": "2023-10-11T12:54:45.112Z"
+        }
+    ]
+}

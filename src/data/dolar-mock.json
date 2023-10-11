@@ -1,0 +1,107 @@
+{
+    "data": {
+        "panel": [
+            {
+                "titulo": "Dólar Blue",
+                "venta": "1020",
+                "compra": "1010",
+                "historico": "1050",
+                "apertura": "0",
+                "cierre": "970",
+                "lastUpdate": "2023-10-10T18:27:29.000Z"
+            },
+            {
+                "titulo": "Dólar Oficial",
+                "venta": "367,18",
+                "compra": "347,18",
+                "cierre": "367,18",
+                "historico": "367,370",
+                "fecha": "10/10/2023 - 16:35"
+            },
+            {
+                "titulo": "Dólar Tarjeta",
+                "venta": "734,36",
+                "compra": "347,18",
+                "cierre": "734,36",
+                "historico": "734,74",
+                "fecha": "10/10/2023 - 16:35"
+            },
+            {
+                "titulo": "Dólar Qatar",
+                "venta": "734,36",
+                "compra": "347,18",
+                "cierre": "734,36",
+                "historico": "734,74",
+                "fecha": "10/10/2023 - 16:35"
+            },
+            {
+                "titulo": "Dólar MEP",
+                "venta": "844,81",
+                "compra": "844,81",
+                "cierre": "840,01",
+                "historico": "879,56",
+                "fecha": "10/10/2023 - 17:55"
+            },
+            {
+                "titulo": "Dólar CCL",
+                "venta": "953,56",
+                "compra": "953,56",
+                "cierre": "881,52",
+                "historico": "984,90",
+                "fecha": "10/10/2023 - 17:55"
+            },
+            {
+                "titulo": "criptodólar",
+                "compra": "985.446",
+                "venta": "995.547",
+                "cierre": "1005.91",
+                "fecha": "2023-10-11T12:49:32.073Z"
+            },
+            {
+                "titulo": "Dólar Mayorista",
+                "venta": "350,10",
+                "compra": "349,10",
+                "cierre": "350,10",
+                "historico": "351,150",
+                "fecha": "10/10/2023 - 16:36"
+            }
+        ],
+        "publicidades": [
+            {
+                "titulo": "Dólar Letsbit",
+                "compra": "927.41",
+                "venta": "1003.69",
+                "cierre": "1003.69",
+                "fecha": "2023-10-11T12:49:33.471Z"
+            },
+            {
+                "titulo": "Dólar Fiwind",
+                "compra": "915.0943398113207",
+                "venta": "980.5825240776699",
+                "cierre": "970.8737837378641",
+                "fecha": "2023-10-11T12:49:33.696Z"
+            },
+            {
+                "titulo": "Dólar Ahorro Plus",
+                "compra": "350.00",
+                "venta": "622.125",
+                "cierre": "622.125",
+                "fecha": "2023-08-24 - 09:57:38"
+            },
+            {
+                "titulo": "Dólar Mep Plus",
+                "compra": "849.74",
+                "venta": "849.74",
+                "cierre": "849.74",
+                "fecha": "2023-10-11T12:49:34.089Z"
+            },
+            {
+                "titulo": "Dólar Syklo P2P",
+                "compra": "924.2002",
+                "venta": "957.6",
+                "cierre": "957.6",
+                "fecha": "2023-10-11T12:49:34.648Z"
+            }
+        ]
+    }
+}

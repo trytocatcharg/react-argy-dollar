@@ -6,7 +6,9 @@ import useChart from '../hooks/useChart';
 function Chart () {
 const dataChart = useChart();
 
-  if (!dataChart || dataChart.length === 0) {
+console.log(dataChart);
+
+  if (dataChart.status === 'loading') {
     return <div role="status" className='flex justify-center'>
     <svg aria-hidden="true" className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
@@ -15,7 +17,16 @@ const dataChart = useChart();
     <span className="sr-only">Loading...</span>
 </div>
   }
-  else {
+
+  if (dataChart.status === 'ko') { 
+   return <div className='flex justify-center flex-col items-center gap-4'>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+              </svg>
+            <div>Reload the page.</div>
+        </div>
+  }
+  if (dataChart.status === 'ok') {
     const options = {
       title: {
         text: ''
@@ -32,25 +43,20 @@ const dataChart = useChart();
       }
   },
     xAxis: {
-      categories: dataChart.map(e => e.date),
+      categories: dataChart.values?.map(e => e.date),
     },
     series: [{
           name: 'Dollar Price',
-          data: dataChart.map(e => e.value)
+          data: dataChart.values?.map(e => e.value)
     }],
   }
-
-    
-  return (
-    <div>
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={options}
-        />
-    </div>
-  )
+    return (<div>
+              <HighchartsReact
+                highcharts={Highcharts}
+                options={options}/>
+            </div>
+      )
   }
-
 }
 
 export default Chart

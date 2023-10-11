@@ -20,7 +20,7 @@ enum cardSideEnum {
   BACK
 }
 
-const format = (value: number) => {
+const formatUSD = (value: number) => {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -31,11 +31,22 @@ const format = (value: number) => {
     .trim();
 }
 
+const formatEUR = (value: number) => {
+  return new Intl.NumberFormat('es-ES', {
+    style: 'currency',
+    currency: 'EUR',
+    currencyDisplay: "code"
+  })
+    .format(value)
+    .replace("EUR", "€")
+    .trim();
+}
+
 function Card({name, compra, venta,cierre, updatedAt, children, showChart = false}: Dollar) {
   const [cardSide, setCardSide] = useState(cardSideEnum.FRONT);
   const [animation, setAnimation] = useState(true);
-  const buyFormatted = format(compra);
-  const sellFormatted = format(venta);
+  const buyFormatted = name.includes('Dólar') || name.includes('cripto') ? formatUSD(compra) : formatEUR(compra);
+  const sellFormatted = name.includes('Dólar') || name.includes('cripto') ? formatUSD(venta) : formatEUR(venta);
 
   const [modalIsOpen,setModalIsOpen] = useState(false);
 
