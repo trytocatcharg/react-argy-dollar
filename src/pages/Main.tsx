@@ -1,10 +1,34 @@
 import Card from "../components/Card";
 import { CardSkeleton } from "../components/CardSkeleton";
 import useDollar from "../hooks/useDollar";
-
+import mockUsdJson from '../data/dolar-mock.json';
+import { CurrencyModel } from "../models/currency-backend.model";
 
   function Main() {
     const {data, error, status} = useDollar();
+    const mockDolar: CurrencyModel[] = mockUsdJson.data.panel.map((element) => {
+      let fecha: Date = new Date(element.lastUpdate!);
+      if (element.fecha) {
+        if (String(element.fecha).includes(' - ')) {
+          const [fechaPart, horaPart] = element.fecha.split(" - ");
+          const [dia, mes, anio] = fechaPart.split("/");
+          const [hora, minutos] = horaPart.split(":");
+
+          fecha = new Date(Number(anio), Number(mes) - 1, Number(dia), Number(hora), Number(minutos));
+        } else {
+          fecha = new Date (element.fecha);
+        }
+      }
+
+      return {
+        titulo: element.titulo,
+        compra: Number(element.compra.replace(',', '.')),
+        venta: Number(element.venta.replace(',', '.')),
+        cierre: Number(element.cierre.replace(',', '.')),
+        updatedAt: fecha,
+        showChart: (element.titulo === 'Dólar Blue')
+      } as CurrencyModel;
+    })
 
 
     return (
@@ -23,7 +47,23 @@ import useDollar from "../hooks/useDollar";
           }
 
           {
-            (error || status === 'error') &&  <div>error</div>
+            (error || status === 'error') && mockDolar!.map(e => {
+                return (<div className="p-1" key={e.titulo}>
+                  <Card 
+                    name={e.titulo} 
+                    venta={e.venta} 
+                    compra={e.compra}
+                    cierre={e.cierre}
+                    updatedAt={e.updatedAt}
+                    showChart= {e.showChart}
+                    >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" 
+                  className="h-14 z-10 bg-slate-50 rounded-xl border-solid border-2 border-gray-800">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                    </Card>
+                </div>)
+            })
           }
           
           {

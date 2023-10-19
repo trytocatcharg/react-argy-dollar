@@ -1,15 +1,19 @@
 import "./MarqueeMarkets.css";
 import Marquee from "react-fast-marquee";
 import { useCommodities } from "../hooks/useCommodities";
-
+import mockJson from '../data/commodities-mock.json';
+import { CommoditiesModel } from "../models/commodities-backend.model";
 export const MarqueeMarkets = () => {
  
   const {data, error, status} = useCommodities();
 
-
-
-  
-  if (status === 'error' || error) return <div>error</div>
+  const mockCommodities: CommoditiesModel[] = mockJson.data.map((element) => {
+    return {
+      commoditie: element.commoditie,
+      value: element.data?.ultimo || element.data?.valor || element.actual?.valor_actual,
+      variation: element.data?.variacion.replace('%', '').replace(',', '.') || element.actual?.variacion.replace('%', '').replace(',', '.')
+    }  as CommoditiesModel
+  })
 
   return (
     <Marquee direction="left" gradient={true} 
@@ -32,6 +36,41 @@ export const MarqueeMarkets = () => {
       </div>
     }
   </>
+}
+{
+ (error || status === 'error') &&
+    <div className="flex gap-16">
+        {mockCommodities!.map((e, i) => {
+            return (
+                <div key={e.value} className={`h-3 gap-2 flex flex-row justify-around  ${i === 0 ? 'ml-13': ''}`}>
+                  <div className="text-base font-bold" key={e.commoditie} >{e.commoditie}</div>
+                  <div className="font-semibold">{e.value }</div>
+
+                  { 
+                  Number(e.variation) === 0 ? 
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+                  </svg>
+                  : Number(e.variation) > 0
+                    ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-green-500">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+                    </svg>
+                  
+                    : <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-red-500">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5" />
+                  </svg>
+                  }
+                  {
+                  Number(e.variation)  === 0 
+                    ? <div >{e.variation + '%'}</div>
+                    : <div className={`${Number(e.variation) > 0 ? 'text-green-500' : 'text-red-500' }`}>{e.variation + '%'}</div>
+                  }
+                </div>
+            )
+          })
+        }
+    </div>
+
 }
 { status === 'success' &&
       <div className="flex gap-16">
